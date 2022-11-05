@@ -33,7 +33,7 @@ const UNITS = [
         name: 'Wing Fighters',
         airAttack: 8,
         groundAttack: 6,
-        fuelCost: -4,
+        fuelCost: -6,
     },
     {
         name: 'Commander Shepard',
@@ -56,7 +56,7 @@ const UNITS = [
     {
         name: 'Biotics',
         airAttack: 0,
-        groundAttack: 6,
+        groundAttack: 10,
         fuelCost: -6,
     },
     {
