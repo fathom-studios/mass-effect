@@ -3,13 +3,13 @@ const UNITS = [
         name: 'Destiny Ascension',
         airAttack: 80,
         groundAttack: 20,
-        fuelCost: -22,
+        fuelCost: -24,
     },
     {
         name: 'Normandy',
         airAttack: 30,
         groundAttack: 30,
-        fuelCost: -11,
+        fuelCost: -12,
     },
     {
         name: 'Migrant Fleet',
