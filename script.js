@@ -227,10 +227,22 @@ $('._card-bg').each((idx, c) => {
     });
 });
 
-$('._bg-air').droppable({
+$('._air').droppable({
+    over: () => {
+        $('._air ._text').removeClass('md:opacity-25').addClass('opacity-75');
+    },
+    out: () => {
+        $('._air ._text').addClass('md:opacity-25').removeClass('opacity-75');
+    },
     drop: playCard.bind(null, 'air'),
 });
-$('._bg-ground').droppable({
+$('._ground').droppable({
+    over: () => {
+        $('._ground ._text').removeClass('md:opacity-25').addClass('opacity-75');
+    },
+    out: () => {
+        $('._ground ._text').addClass('md:opacity-25').removeClass('opacity-75');
+    },
     drop: playCard.bind(null, 'ground'),
 });
 
