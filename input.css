@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --slate-800: rgb(30 41 59);
+    --slate-900: rgb(15 23 42);
+    --slate-1000: rgb(5 13 32);
+    --green-500: rgb(34 197 94);
+    --rose-500: rgb(244 63 94);
+    --rose-600: rgb(225 29 72);
+}
+
+html, body, * {
+    box-sizing: border-box;
+}
+
+._bg-damage {
+    background: linear-gradient(to right, rgb(111 27 27) 90%, transparent 100%);
+}
+
+._bg-air {
+    background-image: radial-gradient(farthest-side at 50% 100%, #f3c52f59, transparent 85%);
+}
+
+._bg-ground {
+    background-image: radial-gradient(farthest-side at 50% 0%, var(--slate-1000) 82%, rgb(15 23 42 / 0.8) 100%, transparent 100%);
+}
+
+._bg-radar {
+    background-image: linear-gradient(to right, var(--rose-500), var(--rose-500) 2px, transparent 2px), linear-gradient(to bottom, var(--rose-500), var(--rose-500) 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+    opacity: 0.3;
+}
+._bg-radar._safe {
+    background-image: linear-gradient(to right, var(--green-500), var(--green-500) 2px, transparent 2px), linear-gradient(to bottom, var(--green-500), var(--green-500) 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+    opacity: 0.3;
+}

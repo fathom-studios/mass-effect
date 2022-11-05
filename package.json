@@ -1,0 +1,23 @@
+{
+  "name": "mass-effect",
+  "version": "1.0.0",
+  "description": "Battle to save Earth in this single-player card game",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./input.css -o ./output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icanfathom/mass-effect.git"
+  },
+  "author": "Joseph Harris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icanfathom/mass-effect/issues"
+  },
+  "homepage": "https://github.com/icanfathom/mass-effect#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.2"
+  }
+}
