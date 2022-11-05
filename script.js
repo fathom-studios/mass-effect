@@ -3,25 +3,25 @@ const UNITS = [
         name: 'Destiny Ascension',
         airAttack: 80,
         groundAttack: 20,
-        fuelCost: -2,
+        fuelCost: -20,
     },
     {
         name: 'Normandy',
         airAttack: 30,
         groundAttack: 30,
-        fuelCost: -4,
+        fuelCost: -8,
     },
     {
         name: 'Migrant Fleet',
         airAttack: 15,
         groundAttack: 5,
-        fuelCost: -1,
+        fuelCost: -12,
     },
     {
         name: 'Alliance Fleet',
-        airAttack: 20,
+        airAttack: 18,
         groundAttack: 10,
-        fuelCost: -1,
+        fuelCost: -15,
     },
     {
         name: 'Turian Battleship',
@@ -33,13 +33,13 @@ const UNITS = [
         name: 'Wing Fighters',
         airAttack: 8,
         groundAttack: 6,
-        fuelCost: -3,
+        fuelCost: -4,
     },
     {
         name: 'Commander Shepard',
         airAttack: 4,
         groundAttack: 20,
-        fuelCost: -1,
+        fuelCost: 0,
     },
     {
         name: 'N7 Soldiers',
@@ -51,19 +51,19 @@ const UNITS = [
         name: 'Aralakh Company',
         airAttack: 0,
         groundAttack: 25,
-        fuelCost: -1,
+        fuelCost: -6,
     },
     {
         name: 'Biotics',
         airAttack: 0,
         groundAttack: 6,
-        fuelCost: -4,
+        fuelCost: -6,
     },
     {
         name: 'AA Guns',
         airAttack: 20,
         groundAttack: 0,
-        fuelCost: -2,
+        fuelCost: -8,
     },
     {
         name: 'Blood Pack',
@@ -87,7 +87,7 @@ const UNITS = [
         name: 'Archangel',
         airAttack: 5,
         groundAttack: 12,
-        fuelCost: -2,
+        fuelCost: -1,
     }
 ];
 
@@ -102,7 +102,7 @@ let discard = UNITS;
 let airEmbattled = true;
 let groundEmbattled = true;
 let airDamage = 20;
-let groundDamage = 30;   
+let groundDamage = 30;
 let fuel = 100;
 
 function shuffle() {
@@ -186,14 +186,14 @@ function update() {
 
     fuel = Math.max(0, Math.min(100, fuel));
 
-    $('._air ._bg-damage').css('width', `${airDamage}%`);
+    $('._air ._bg-damage').css('width', `${airDamage / 100 * 106}%`);
     $('._air ._damage-text').text(airDamage);
     if (airDamage == 0) {
         $('._air ._text').removeClass('text-rose-500').addClass('text-green-500');
         $('._air ._bg-radar').addClass('_safe');
     }
     
-    $('._ground ._bg-damage').css('width', `${groundDamage}%`);
+    $('._ground ._bg-damage').css('width', `${groundDamage / 100 * 106}%`);
     $('._ground ._damage-text').text(groundDamage);
     if (groundDamage == 0) {
         $('._ground ._text').removeClass('text-rose-500').addClass('text-green-500');
@@ -202,12 +202,16 @@ function update() {
 
     $('._fuel').text(fuel);
 
-    if (airDamage == 0 && groundDamage == 0) {
+    
+    if (airDamage == 100 || groundDamage == 100) {
+        $('._lost').removeClass('hidden');
+        return false;
+    } else if (fuel == 0) {
+        $('._lost-fuel').removeClass('hidden');
+        return false;
+    } else if (airDamage == 0 && groundDamage == 0) {
         $('._map').removeClass('border-rose-500/30').addClass('border-green-500/30');
         $('._won').removeClass('hidden');
-        return false;
-    } else if (airDamage == 100 || groundDamage == 100 || fuel == 0) {
-        $('._lost').removeClass('hidden');
         return false;
     }
 
