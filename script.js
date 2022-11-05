@@ -3,13 +3,13 @@ const UNITS = [
         name: 'Destiny Ascension',
         airAttack: 80,
         groundAttack: 20,
-        fuelCost: -30,
+        fuelCost: -22,
     },
     {
         name: 'Normandy',
         airAttack: 30,
         groundAttack: 30,
-        fuelCost: -15,
+        fuelCost: -11,
     },
     {
         name: 'Migrant Fleet',
@@ -21,7 +21,7 @@ const UNITS = [
         name: 'Alliance Fleet',
         airAttack: 18,
         groundAttack: 10,
-        fuelCost: -15,
+        fuelCost: -14,
     },
     {
         name: 'Turian Battleship',
@@ -57,7 +57,7 @@ const UNITS = [
         name: 'Biotics',
         airAttack: 0,
         groundAttack: 10,
-        fuelCost: -8,
+        fuelCost: -4,
     },
     {
         name: 'AA Guns',
