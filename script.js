@@ -92,6 +92,7 @@ const UNITS = [
 ];
 
 const REAPER_MAX = 26;
+const DELAY = 800;
 
 let deck = [];
 let hand = [];
@@ -152,7 +153,7 @@ function playCard(target) {
         drawCard(grabbedIdx);
         $('._card-bg').eq(grabbedIdx).css('display', 'block');
         $('._map').removeClass('animate-shake');
-    }, 1000);
+    }, DELAY);
 
     if (update()) {
         reaperAttack();
@@ -169,7 +170,7 @@ function reaperAttack() {
             $('._status').text('The Reapers have advanced on the ground!').addClass('animate-fastFade');
         }
         update();
-    }, 1000);
+    }, DELAY);
 }
 
 function update() {
