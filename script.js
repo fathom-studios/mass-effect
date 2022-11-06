@@ -14,13 +14,13 @@ const UNITS = [
     {
         name: 'Migrant Fleet',
         airAttack: 15,
-        groundAttack: 5,
+        groundAttack: 15,
         fuelCost: -12,
     },
     {
         name: 'Alliance Fleet',
         airAttack: 18,
-        groundAttack: 10,
+        groundAttack: 12,
         fuelCost: -10,
     },
     {
@@ -32,7 +32,7 @@ const UNITS = [
     {
         name: 'Wing Fighters',
         airAttack: 8,
-        groundAttack: 6,
+        groundAttack: 8,
         fuelCost: -4,
     },
     {
@@ -44,7 +44,7 @@ const UNITS = [
     {
         name: 'N7 Soldiers',
         airAttack: 12,
-        groundAttack: 18,
+        groundAttack: 22,
         fuelCost: -8,
     },
     {
@@ -56,8 +56,8 @@ const UNITS = [
     {
         name: 'Biotics',
         airAttack: 0,
-        groundAttack: 10,
-        fuelCost: -3,
+        groundAttack: 14,
+        fuelCost: -6,
     },
     {
         name: 'AA Guns',
@@ -86,7 +86,7 @@ const UNITS = [
     {
         name: 'Archangel',
         airAttack: 5,
-        groundAttack: 12,
+        groundAttack: 14,
         fuelCost: -1,
     }
 ];
