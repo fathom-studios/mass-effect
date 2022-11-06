@@ -184,7 +184,7 @@ function reaperAttack() {
             airDamage += Math.max(1, Math.min(REAPER_MAX, Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE_CURRENT)));
             setStatus('The Reapers have advanced in the air!');
         } else {
-            groundDamage += Math.max(1, Math.min(Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE_CURRENT)));
+            groundDamage += Math.max(1, Math.min(REAPER_MAX, Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE_CURRENT)));
             setStatus('The Reapers have advanced on the ground!');
         }
         update();
