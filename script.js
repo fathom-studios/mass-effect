@@ -38,7 +38,7 @@ const UNITS = [
     {
         name: 'Commander Shepard',
         airAttack: 4,
-        groundAttack: 20,
+        groundAttack: 30,
         fuelCost: 0,
     },
     {
@@ -56,7 +56,7 @@ const UNITS = [
     {
         name: 'Biotics',
         airAttack: 0,
-        groundAttack: 14,
+        groundAttack: 16,
         fuelCost: -6,
     },
     {
@@ -86,12 +86,12 @@ const UNITS = [
     {
         name: 'Archangel',
         airAttack: 5,
-        groundAttack: 14,
+        groundAttack: 18,
         fuelCost: -1,
     }
 ];
 
-const REAPER_MAX = 30;
+const REAPER_MAX = 32;
 const DELAY = 800;
 
 let deck = [];
