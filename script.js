@@ -106,6 +106,17 @@ let airDamage = 20;
 let groundDamage = 30;
 let fuel = 100;
 
+function setStatus(msg) {
+    if (msg) {
+        $('._status').text(msg).addClass('animate-pop');
+        window.setTimeout(() => {
+            $('._status').removeClass('animate-pop');
+        }, 500)
+    } else {
+        $('._status').text('');
+    }
+}
+
 function shuffle() {
     while (discard.length) {
         deck.push(discard.splice(Math.floor(Math.random() * discard.length), 1)[0]);
@@ -131,7 +142,8 @@ function drawCard(slotIdx) {
 function playCard(target) {
     $('._map').addClass('animate-shake');
     $('._card-bg').eq(grabbedIdx).css('display', 'none');
-    $('._status').text('').removeClass('animate-fastFade');
+    $('._card-bg').draggable('disable');
+    setStatus();
 
     const card = hand[grabbedIdx];
 
@@ -154,6 +166,7 @@ function playCard(target) {
         drawCard(grabbedIdx);
         $('._card-bg').eq(grabbedIdx).css('display', 'block');
         $('._map').removeClass('animate-shake');
+        $('._card-bg').draggable('enable');
     }, DELAY);
 
     if (update()) {
@@ -165,10 +178,10 @@ function reaperAttack() {
     window.setTimeout(() => {
         if (airEmbattled && (!groundEmbattled || Math.random() < 0.5)) {
             airDamage += Math.max(1, Math.min(REAPER_MAX, Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE)));
-            $('._status').text('The Reapers have advanced in the air!').addClass('animate-fastFade');
+            setStatus('The Reapers have advanced in the air!');
         } else {
             groundDamage += Math.max(1, Math.min(Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE)));
-            $('._status').text('The Reapers have advanced on the ground!').addClass('animate-fastFade');
+            setStatus('The Reapers have advanced on the ground!');
         }
         update();
     }, DELAY);
@@ -261,5 +274,8 @@ drawCard(1);
 update();
 
 window.setTimeout(() => {
-    $('._status').text('You get to make the first attack...');
+    setStatus('The Reapers are approaching Earth!');
 }, 2000);
+window.setTimeout(() => {
+    setStatus('You get to make the first attack...');
+}, 5000);

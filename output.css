@@ -656,6 +656,32 @@ video {
   animation: fade 2.5s;
 }
 
+@keyframes pop {
+  0% {
+    scale: 1;
+  }
+
+  25% {
+    scale: 1.5;
+  }
+
+  50% {
+    scale: 1;
+  }
+
+  70% {
+    scale: 1.15;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
+
+.animate-pop {
+  animation: pop 0.45s ease-out;
+}
+
 @keyframes shake {
   0% {
     translate: 0 0;
@@ -686,26 +712,18 @@ video {
   animation: shake 0.19s;
 }
 
-@keyframes fade {
-  100 {
-    opacity: 100;
-  }
-
-  0% {
-    opacity: 0;
-  }
-}
-
-.animate-fastFade {
-  animation: fade 0.2s;
-}
-
 .cursor-pointer {
   cursor: pointer;
 }
 
-.grid-cols-\[1rem\2c _1fr\] {
-  grid-template-columns: 1rem 1fr;
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.grid-cols-\[1\.5rem\2c _1fr\] {
+  grid-template-columns: 1.5rem 1fr;
 }
 
 .grid-rows-\[1fr\2c _1fr\2c _2rem\] {
@@ -1095,11 +1113,6 @@ html, body, * {
   background-size: 40px 40px;
   background-repeat: repeat;
   opacity: 0.3;
-}
-
-.hover\:bg-slate-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-slate-500:hover {
