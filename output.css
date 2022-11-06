@@ -1213,3 +1213,9 @@ html, body, * {
     opacity: 0.25;
   }
 }
+
+@media (min-width: 1024px) {
+  .lg\:text-\[4rem\] {
+    font-size: 4rem;
+  }
+}

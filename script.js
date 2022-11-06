@@ -92,7 +92,11 @@ const UNITS = [
 ];
 
 const REAPER_MAX = 32;
-const ATTACK_SCALE = 1.1;
+const ATTACK_SCALE_MIN = 0.9;
+const ATTACK_SCALE_MAX = 1.1;
+const ATTACK_SCALE_ATTENUATION = 0.05;
+const ATTACK_SCALE_KEY = 'ATTACK_SCALE';
+const ATTACK_SCALE_CURRENT = localStorage.getItem(ATTACK_SCALE_KEY) ? parseFloat(localStorage.getItem(ATTACK_SCALE_KEY)) : ATTACK_SCALE_MIN;
 const DELAY = 800;
 
 let deck = [];
@@ -177,10 +181,10 @@ function playCard(target) {
 function reaperAttack() {
     window.setTimeout(() => {
         if (airEmbattled && (!groundEmbattled || Math.random() < 0.5)) {
-            airDamage += Math.max(1, Math.min(REAPER_MAX, Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE)));
+            airDamage += Math.max(1, Math.min(REAPER_MAX, Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE_CURRENT)));
             setStatus('The Reapers have advanced in the air!');
         } else {
-            groundDamage += Math.max(1, Math.min(Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE)));
+            groundDamage += Math.max(1, Math.min(Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE_CURRENT)));
             setStatus('The Reapers have advanced on the ground!');
         }
         update();
@@ -192,6 +196,7 @@ function update() {
 
     if (airDamage >= 100 || groundDamage >= 100) {
         $('._lost').removeClass('hidden');
+        localStorage.setItem(ATTACK_SCALE_KEY, `${Math.max(ATTACK_SCALE_CURRENT - ATTACK_SCALE_ATTENUATION, ATTACK_SCALE_MIN)}`);
         canContinue = false;
     } else if (fuel <= 0 && (airDamage > 0 || groundDamage > 0)) {
         $('._lost-fuel').removeClass('hidden');
@@ -199,6 +204,7 @@ function update() {
     } else if (airDamage <= 0 && groundDamage <= 0) {
         $('._map').removeClass('border-rose-500/30').addClass('border-green-500/30');
         $('._won').removeClass('hidden');
+        localStorage.setItem(ATTACK_SCALE_KEY, `${Math.min(ATTACK_SCALE_CURRENT + ATTACK_SCALE_ATTENUATION, ATTACK_SCALE_MAX)}`);
         canContinue = false
     }
 
