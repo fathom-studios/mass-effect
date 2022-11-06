@@ -220,7 +220,7 @@ function update() {
     if (airDamage == 100 || groundDamage == 100) {
         $('._lost').removeClass('hidden');
         return false;
-    } else if (fuel == 0) {
+    } else if (fuel == 0 && (airDamage > 0 || groundDamage > 0)) {
         $('._lost-fuel').removeClass('hidden');
         return false;
     } else if (airDamage == 0 && groundDamage == 0) {
