@@ -188,48 +188,42 @@ function reaperAttack() {
 }
 
 function update() {
+    let canContinue = true;
+
+    if (airDamage >= 100 || groundDamage >= 100) {
+        $('._lost').removeClass('hidden');
+        canContinue = false;
+    } else if (fuel <= 0 && (airDamage > 0 || groundDamage > 0)) {
+        $('._lost-fuel').removeClass('hidden');
+        canContinue = false;
+    } else if (airDamage <= 0 && groundDamage <= 0) {
+        $('._map').removeClass('border-rose-500/30').addClass('border-green-500/30');
+        $('._won').removeClass('hidden');
+        canContinue = false
+    }
+
     airDamage = Math.max(0, Math.min(100, airDamage));
-    if (airDamage == 0) {
-        airEmbattled = false;
-    }
-
-    groundDamage = Math.max(0, Math.min(100, groundDamage));
-    if (groundDamage == 0) {
-        groundEmbattled = false;
-    }
-
-    fuel = Math.max(0, Math.min(100, fuel));
-
-    $('._air ._bg-damage').css('width', `${airDamage / 100 * 106}%`);
+    $('._air ._bg-damage').css('width', `${airDamage / 100 * 106}%`); //Scale slightly above since the front of the damage indicator has a fade-in
     $('._air ._damage-text').text(airDamage);
     if (airDamage == 0) {
+        airEmbattled = false;
         $('._air ._text').removeClass('text-rose-500').addClass('text-green-500');
         $('._air ._bg-radar').addClass('_safe');
     }
     
-    $('._ground ._bg-damage').css('width', `${groundDamage / 100 * 106}%`);
+    groundDamage = Math.max(0, Math.min(100, groundDamage));
+    $('._ground ._bg-damage').css('width', `${groundDamage / 100 * 106}%`); //Scale slightly above since the front of the damage indicator has a fade-in
     $('._ground ._damage-text').text(groundDamage);
     if (groundDamage == 0) {
+        groundEmbattled = false;
         $('._ground ._text').removeClass('text-rose-500').addClass('text-green-500');
         $('._ground ._bg-radar').addClass('_safe');
     }
 
+    fuel = Math.max(0, Math.min(100, fuel));
     $('._fuel').text(fuel);
 
-    
-    if (airDamage == 100 || groundDamage == 100) {
-        $('._lost').removeClass('hidden');
-        return false;
-    } else if (fuel == 0 && (airDamage > 0 || groundDamage > 0)) {
-        $('._lost-fuel').removeClass('hidden');
-        return false;
-    } else if (airDamage == 0 && groundDamage == 0) {
-        $('._map').removeClass('border-rose-500/30').addClass('border-green-500/30');
-        $('._won').removeClass('hidden');
-        return false;
-    }
-
-    return true;
+    return canContinue;
 }
 
 $('._card-bg').each((idx, c) => {
