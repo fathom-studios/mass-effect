@@ -26,8 +26,8 @@ const UNITS = [
     {
         name: 'Turian Battleship',
         airAttack: 10,
-        groundAttack: 2,
-        fuelCost: -8,
+        groundAttack: 4,
+        fuelCost: -7,
     },
     {
         name: 'Wing Fighters',
