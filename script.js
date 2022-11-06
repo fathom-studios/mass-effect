@@ -9,19 +9,19 @@ const UNITS = [
         name: 'Normandy',
         airAttack: 30,
         groundAttack: 30,
-        fuelCost: -8,
+        fuelCost: -7,
     },
     {
         name: 'Migrant Fleet',
         airAttack: 15,
         groundAttack: 12,
-        fuelCost: -12,
+        fuelCost: -11,
     },
     {
         name: 'Alliance Fleet',
         airAttack: 18,
         groundAttack: 12,
-        fuelCost: -10,
+        fuelCost: -9,
     },
     {
         name: 'Turian Battleship',
@@ -33,7 +33,7 @@ const UNITS = [
         name: 'Wing Fighters',
         airAttack: 8,
         groundAttack: 8,
-        fuelCost: -4,
+        fuelCost: -3,
     },
     {
         name: 'Commander Shepard',
@@ -57,7 +57,7 @@ const UNITS = [
         name: 'Biotics',
         airAttack: 0,
         groundAttack: 16,
-        fuelCost: -4,
+        fuelCost: -3,
     },
     {
         name: 'AA Guns',
