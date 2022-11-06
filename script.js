@@ -25,7 +25,7 @@ const UNITS = [
     },
     {
         name: 'Turian Battleship',
-        airAttack: 10,
+        airAttack: 12,
         groundAttack: 4,
         fuelCost: -7,
     },
