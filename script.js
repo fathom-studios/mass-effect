@@ -92,7 +92,7 @@ const UNITS = [
 ];
 
 const REAPER_MAX = 32;
-const ATTACK_SCALE = 1.2;
+const ATTACK_SCALE = 1.18;
 const DELAY = 800;
 
 let deck = [];
