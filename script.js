@@ -3,7 +3,7 @@ const UNITS = [
         name: 'Destiny Ascension',
         airAttack: 80,
         groundAttack: 20,
-        fuelCost: -24,
+        fuelCost: -30,
     },
     {
         name: 'Normandy',
