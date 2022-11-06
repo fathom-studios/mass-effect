@@ -147,9 +147,9 @@ function playCard(target) {
 
     const card = hand[grabbedIdx];
 
-    if (target == 'air' && !airEmbattled) {
+    if (target == 'air' && !airEmbattled || card.airAttack == 0) {
         target = 'ground';
-    } else if (target == 'ground' && !groundEmbattled) {
+    } else if (target == 'ground' && !groundEmbattled || card.groundAttack == 0) {
         target = 'air';
     }
 
