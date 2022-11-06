@@ -92,7 +92,7 @@ const UNITS = [
 ];
 
 const REAPER_MAX = 32;
-const ATTACK_SCALE_MIN = 0.9;
+const ATTACK_SCALE_MIN = 0.85;
 const ATTACK_SCALE_MAX = 1.1;
 const ATTACK_SCALE_ATTENUATION = 0.05;
 const ATTACK_SCALE_KEY = 'ATTACK_SCALE';
@@ -198,7 +198,7 @@ function update() {
         $('._lost').removeClass('hidden');
         localStorage.setItem(ATTACK_SCALE_KEY, `${Math.max(ATTACK_SCALE_CURRENT - ATTACK_SCALE_ATTENUATION, ATTACK_SCALE_MIN)}`);
         canContinue = false;
-    } else if (fuel <= 0 && (airDamage > 0 || groundDamage > 0)) {
+    } else if (fuel < 0 || (fuel == 0 && (airDamage > 0 || groundDamage > 0))) {
         $('._lost-fuel').removeClass('hidden');
         canContinue = false;
     } else if (airDamage <= 0 && groundDamage <= 0) {
@@ -237,7 +237,7 @@ $('._card-bg').each((idx, c) => {
         revert: true,
         revertDuration: 250,
         classes: {
-            'ui-draggable-dragging': 'shadow-xl z-10',
+            'ui-draggable-dragging': 'z-10',
         },
         start: () => {
             grabbedIdx = idx;
