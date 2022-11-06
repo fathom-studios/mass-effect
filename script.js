@@ -273,9 +273,14 @@ drawCard(0);
 drawCard(1);
 update();
 
+//Only show startup message if they haven't played yet
 window.setTimeout(() => {
-    setStatus('The Reapers are approaching Earth!');
+    if (discard.length == 0) {
+        setStatus('The Reapers are approaching Earth!');
+    }
 }, 2000);
 window.setTimeout(() => {
-    setStatus('You get to make the first attack...');
+    if (discard.length == 0) {
+        setStatus('You get to make the first attack...');
+    }
 }, 5000);
