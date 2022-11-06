@@ -91,7 +91,7 @@ const UNITS = [
     }
 ];
 
-const REAPER_MAX = 28;
+const REAPER_MAX = 30;
 const DELAY = 800;
 
 let deck = [];
