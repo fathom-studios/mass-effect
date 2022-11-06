@@ -3,18 +3,18 @@ const UNITS = [
         name: 'Destiny Ascension',
         airAttack: 80,
         groundAttack: 20,
-        fuelCost: -25,
+        fuelCost: -22,
     },
     {
         name: 'Normandy',
         airAttack: 30,
         groundAttack: 30,
-        fuelCost: -9,
+        fuelCost: -8,
     },
     {
         name: 'Migrant Fleet',
         airAttack: 15,
-        groundAttack: 15,
+        groundAttack: 12,
         fuelCost: -12,
     },
     {
@@ -57,7 +57,7 @@ const UNITS = [
         name: 'Biotics',
         airAttack: 0,
         groundAttack: 16,
-        fuelCost: -6,
+        fuelCost: -4,
     },
     {
         name: 'AA Guns',
@@ -92,6 +92,7 @@ const UNITS = [
 ];
 
 const REAPER_MAX = 32;
+const ATTACK_SCALE = 1.2;
 const DELAY = 800;
 
 let deck = [];
@@ -163,10 +164,10 @@ function playCard(target) {
 function reaperAttack() {
     window.setTimeout(() => {
         if (airEmbattled && (!groundEmbattled || Math.random() < 0.5)) {
-            airDamage += Math.max(1, Math.round(Math.random() * REAPER_MAX));
+            airDamage += Math.max(1, Math.min(REAPER_MAX, Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE)));
             $('._status').text('The Reapers have advanced in the air!').addClass('animate-fastFade');
         } else {
-            groundDamage += Math.max(1, Math.round(Math.random() * REAPER_MAX));
+            groundDamage += Math.max(1, Math.min(Math.round(Math.random() * REAPER_MAX * ATTACK_SCALE)));
             $('._status').text('The Reapers have advanced on the ground!').addClass('animate-fastFade');
         }
         update();
