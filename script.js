@@ -133,7 +133,7 @@ function newGame() {
     update();
 
     scoreData = {
-        
+
     };
 
     for (const timer of introTimers) {

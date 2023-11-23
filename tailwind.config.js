@@ -31,7 +31,7 @@ module.exports = {
       animation: {
         shake: 'shake 0.19s',
         fastFade: 'fade 0.2s',
-        slowFade: 'fade 2.5s',
+        slowFade: 'fade 2s',
         pop: 'pop 0.45s ease-out',
       },
     },
