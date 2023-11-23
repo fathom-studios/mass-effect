@@ -99,16 +99,65 @@ const ATTACK_SCALE_KEY = 'ATTACK_SCALE';
 const ATTACK_SCALE_CURRENT = localStorage.getItem(ATTACK_SCALE_KEY) ? parseFloat(localStorage.getItem(ATTACK_SCALE_KEY)) : ATTACK_SCALE_MIN;
 const DELAY = 800;
 
-let deck = [];
-let hand = [];
-let grabbedIdx = null;
-let discard = UNITS;
+let deck; //[]
+let hand; //[]
+let grabbedIdx; //number | null
+let discard; //{}[]
 
-let airEmbattled = true;
-let groundEmbattled = true;
-let airDamage = 20;
-let groundDamage = 30;
-let fuel = 100;
+let airEmbattled; //boolean
+let groundEmbattled; //boolean
+let airDamage; //number
+let groundDamage; //number
+let fuel; //number
+
+let scoreData; //{}
+
+let introTimers = []; //number[]
+
+function newGame() {
+    deck = [];
+    hand = [];
+    grabbedIdx = null;
+    discard = UNITS.slice();
+    airEmbattled = true;
+
+    groundEmbattled = true;
+    airDamage = 20;
+    groundDamage = 30;
+    fuel = 100;
+
+    setStatus();
+    shuffle();
+    drawCard(0);
+    drawCard(1);
+    update();
+
+    scoreData = {
+        
+    };
+
+    for (const timer of introTimers) {
+        window.clearTimeout(timer);
+    }
+    introTimers = [];
+
+    //Only show startup message when pages loads if they haven't jumped into playing yet
+    let timer1 = window.setTimeout(() => {
+        introTimers.splice(introTimers.indexOf(timer1), 1);
+        if (discard.length == 0) {
+            setStatus('The Reapers are approaching Earth!');
+        }
+    }, 2000);
+    introTimers.push(timer1);
+
+    let timer2 = window.setTimeout(() => {
+        introTimers.splice(introTimers.indexOf(timer2), 1);
+        if (discard.length == 0) {
+            setStatus('You get to make the first attack...');
+        }
+    }, 5000);
+    introTimers.push(timer2);
+}
 
 function setStatus(msg) {
     if (msg) {
@@ -203,6 +252,10 @@ function update() {
         $('._won').removeClass('hidden');
         localStorage.setItem(ATTACK_SCALE_KEY, `${Math.min(ATTACK_SCALE_CURRENT + ATTACK_SCALE_ATTENUATION, ATTACK_SCALE_MAX)}`);
         canContinue = false
+    } else {
+        $('._won').addClass('hidden');
+        $('._lost').addClass('hidden');
+        $('._map').addClass('border-rose-500/30').removeClass('border-green-500/30');
     }
 
     airDamage = Math.max(0, Math.min(100, airDamage));
@@ -212,6 +265,9 @@ function update() {
         airEmbattled = false;
         $('._air ._text').removeClass('text-rose-500').addClass('text-green-500');
         $('._air ._bg-radar').addClass('_safe');
+    } else {
+        $('._air ._text').addClass('text-rose-500').removeClass('text-green-500');
+        $('._air ._bg-radar').removeClass('_safe');
     }
     
     groundDamage = Math.max(0, Math.min(100, groundDamage));
@@ -221,6 +277,9 @@ function update() {
         groundEmbattled = false;
         $('._ground ._text').removeClass('text-rose-500').addClass('text-green-500');
         $('._ground ._bg-radar').addClass('_safe');
+    } else {
+        $('._ground ._text').addClass('text-rose-500').removeClass('text-green-500');
+        $('._ground ._bg-radar').removeClass('_safe');
     }
 
     fuel = Math.max(0, Math.min(100, fuel));
@@ -262,22 +321,7 @@ $('._ground').droppable({
 });
 
 $('._restart').on('click', () => {
-    location.reload();
+    newGame();
 });
 
-shuffle();
-drawCard(0);
-drawCard(1);
-update();
-
-//Only show startup message if they haven't played yet
-window.setTimeout(() => {
-    if (discard.length == 0) {
-        setStatus('The Reapers are approaching Earth!');
-    }
-}, 2000);
-window.setTimeout(() => {
-    if (discard.length == 0) {
-        setStatus('You get to make the first attack...');
-    }
-}, 5000);
+newGame();
