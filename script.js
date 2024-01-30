@@ -243,8 +243,12 @@ function reaperAttack() {
 function update() {
     let canContinue = true;
 
-    if (airDamage >= 100 || groundDamage >= 100 || fuel < 0 || (fuel == 0 && (airDamage > 0 || groundDamage > 0))) {
+    if (airDamage >= 100 || groundDamage >= 100) {
         $('._lost').removeClass('hidden');
+        localStorage.setItem(ATTACK_SCALE_KEY, `${Math.max(ATTACK_SCALE_CURRENT - ATTACK_SCALE_ATTENUATION, ATTACK_SCALE_MIN)}`);
+        canContinue = false;
+    } else if (fuel <= 0 && (airDamage > 0 || groundDamage > 0)) {
+        $('._lost-fuel').removeClass('hidden');
         localStorage.setItem(ATTACK_SCALE_KEY, `${Math.max(ATTACK_SCALE_CURRENT - ATTACK_SCALE_ATTENUATION, ATTACK_SCALE_MIN)}`);
         canContinue = false;
     } else if (airDamage <= 0 && groundDamage <= 0) {
