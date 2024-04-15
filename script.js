@@ -132,9 +132,9 @@ function newGame() {
     drawCard(1);
     update();
 
-    scoreData = {
+    scoreData = {};
 
-    };
+    
 
     for (const timer of introTimers) {
         window.clearTimeout(timer);
@@ -259,6 +259,7 @@ function update() {
     } else {
         $('._won').addClass('hidden');
         $('._lost').addClass('hidden');
+        $('._lost-fuel').addClass('hidden');
         $('._map').addClass('border-rose-500/30').removeClass('border-green-500/30');
     }
 
